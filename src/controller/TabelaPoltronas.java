@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.sql.*;
+import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -58,6 +59,7 @@ public class TabelaPoltronas extends JFrame {
 	private JPanel panelPoltronas;
 	private JPanel panelLegendas;
 	private JButton btnValidar;
+	private ArrayList<String> poltronas = new ArrayList<String>();
 	/**
 	 * Launch the application.
 	 */
@@ -173,6 +175,8 @@ public class TabelaPoltronas extends JFrame {
 					prep.close();
 					connec.close();
 					btnValidar.setEnabled(false);
+					poltronas = poltronasSelecionas(campo, poltronas);
+					JOptionPane.showMessageDialog(null, poltronas);
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, e);
 				}
@@ -195,16 +199,31 @@ public class TabelaPoltronas extends JFrame {
 		atualizarTabela(linha, coluna, id, campo);
 	}
 	
-//	public String[] poltronasSelecionas(JTextField campo) {
-//		if (campo.getBackground() == Color.DARK_GRAY) {
-//			//campos.
-//		}
-//	}
+	public ArrayList<String> poltronasSelecionas(JTextField campo, ArrayList<String> poltronas) {
+		if (campo.getBackground() == Color.DARK_GRAY) {
+			poltronas.add(campo.getName());
+		}
+		return poltronas;
+	}
 	
+	/**
+	 * Fecha a Frame.
+	 */
 	public void closeFrame () {
 		this.dispose();
 	}
 	
+	/**
+	 * Getters e Setters.
+	 */	
+	public ArrayList<String> getPoltronas() {
+		return poltronas;
+	}
+
+	public void setPoltronas(ArrayList<String> poltronas) {
+		this.poltronas = poltronas;
+	}
+
 	/**
 	 * Create the frame.
 	 */
