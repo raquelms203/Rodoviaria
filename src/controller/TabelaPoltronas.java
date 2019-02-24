@@ -57,7 +57,6 @@ public class TabelaPoltronas extends JFrame {
 	private JPanel panelPoltronas;
 	private JPanel panelLegendas;
 	private JButton btnValidar;
-
 	/**
 	 * Launch the application.
 	 */
@@ -136,6 +135,7 @@ public class TabelaPoltronas extends JFrame {
 		campo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				btnValidar.setEnabled(true);
 				if (campo.getBackground() == Color.green) {
 					campo.setBackground(Color.darkGray);
 					campo.setDisabledTextColor(Color.darkGray);
@@ -171,9 +171,11 @@ public class TabelaPoltronas extends JFrame {
 					prep.execute();
 					prep.close();
 					connec.close();
+					btnValidar.setEnabled(false);
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, e);
 				}
+				
 			}
 		});
 	}
@@ -197,7 +199,11 @@ public class TabelaPoltronas extends JFrame {
 //			//campos.
 //		}
 //	}
-
+	
+	public void closeFrame () {
+		this.dispose();
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -221,7 +227,7 @@ public class TabelaPoltronas extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
 		panelPoltronas = new JPanel();
 		panelPoltronas.setBounds(30, 39, 180, 186);
 		contentPane.add(panelPoltronas);
@@ -602,6 +608,5 @@ public class TabelaPoltronas extends JFrame {
 		lblVolante.setBounds(0, 0, 30, 33);
 		panelPoltronas.add(lblVolante);
 		lblVolante.setIcon(new ImageIcon(imgvolante));
-
 	}
 }
