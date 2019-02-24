@@ -212,7 +212,7 @@ public class ViewBilheteria extends JFrame {
 		txtHDestino.setText("");
 		txtPreco.setText("");
 		txtCliente.setText("");
-		tp.setVisible(false);
+		tp.closeFrame();
 	}
 	
 	/**

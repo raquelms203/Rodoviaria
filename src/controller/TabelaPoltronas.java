@@ -31,6 +31,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowEvent;
 
+@SuppressWarnings("serial")
 public class TabelaPoltronas extends JFrame {
 
 	private JPanel contentPane;
@@ -70,7 +71,7 @@ public class TabelaPoltronas extends JFrame {
 			}
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| javax.swing.UnsupportedLookAndFeelException ex) {
-			System.err.println(ex);
+			JOptionPane.showMessageDialog(null, ex);
 		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -78,7 +79,7 @@ public class TabelaPoltronas extends JFrame {
 					TabelaPoltronas frame = new TabelaPoltronas(3);
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, e);
 				}
 			}
 		});
