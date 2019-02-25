@@ -99,6 +99,5 @@ public class ViewADM extends JFrame {
 		cp.getTxtHorario().setVisible(false);
 		painelBilheteria = (JPanel) cp.getContentPane();
 		tabbedPane.addTab("Bilheteria", null, painelBilheteria, null);		
-		
 	}
 }

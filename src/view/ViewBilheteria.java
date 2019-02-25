@@ -37,6 +37,8 @@ public class ViewBilheteria extends JFrame {
 	private JTextField txtHorario;
 	private int idPassagem = -1;
 	private TabelaPoltronas tp = null;
+	private JTextField txtTroco;
+	private JTextField txtResult;
 
 	/**
 	 * Launch the application.
@@ -161,6 +163,16 @@ public class ViewBilheteria extends JFrame {
 			JOptionPane.showMessageDialog(null, tp);
 		}
 		return -1;
+	}
+	
+	public void calcularTroco() {
+		if (!txtTroco.getText().isEmpty()) {
+			float preco = Float.parseFloat(txtPreco.getText());
+			float troco = Float.parseFloat(txtTroco.getText());
+			float result = troco - preco;
+			txtResult.setText(""+result);
+			txtResult.setVisible(true);
+		}
 	}
 
 	/**
@@ -391,7 +403,7 @@ public class ViewBilheteria extends JFrame {
 		txtPreco.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPreco.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		txtPreco.setBackground(new Color(240, 230, 140));
-		txtPreco.setBounds(67, 231, 99, 44);
+		txtPreco.setBounds(67, 231, 92, 44);
 		contentPane.add(txtPreco);
 		txtPreco.setColumns(10);
 
@@ -408,7 +420,7 @@ public class ViewBilheteria extends JFrame {
 			}
 		});
 		btnComprar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnComprar.setBounds(337, 291, 168, 44);
+		btnComprar.setBounds(294, 342, 168, 44);
 		btnComprar.setIcon(new ImageIcon(imgok));
 		contentPane.add(btnComprar);
 
@@ -431,5 +443,32 @@ public class ViewBilheteria extends JFrame {
 		});
 		btnAtualiza.setBounds(67, 4, 24, 24);
 		contentPane.add(btnAtualiza);
+		
+		txtTroco = new JTextField();
+		txtTroco.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
+					calcularTroco();
+			}
+		});
+		txtTroco.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtTroco.setBounds(206, 231, 92, 44);
+		contentPane.add(txtTroco);
+		txtTroco.setColumns(10);
+		
+		JLabel lblTroco = new JLabel("Troco?");
+		lblTroco.setBounds(206, 214, 46, 14);
+		contentPane.add(lblTroco);
+		
+		txtResult = new JTextField();
+		txtResult.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtResult.setEnabled(false);
+		txtResult.setEditable(false);
+		txtResult.setVisible(false);
+		txtResult.setColumns(10);
+		txtResult.setBounds(308, 231, 92, 44);
+		contentPane.add(txtResult);
+		
 	}
 }
