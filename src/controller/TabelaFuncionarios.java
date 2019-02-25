@@ -169,10 +169,11 @@ public class TabelaFuncionarios extends JFrame {
 		btnSenhas = new JButton("Senhas");
 		btnSenhas.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
-		btnSenhas.setBounds(886, 11, 124, 26);
+		btnSenhas.setBounds(885, 11, 124, 26);
 		contentPane.add(btnSenhas);
 		
 		JButton btnPesquisar = new JButton("");		
+		btnPesquisar.setToolTipText("Pesquisar");
 		Image imgsearch = new ImageIcon(this.getClass().getResource("/search.png")).getImage();
 		btnPesquisar.setIcon(new ImageIcon(imgsearch));
 		btnPesquisar.addActionListener(new ActionListener() {
@@ -185,6 +186,7 @@ public class TabelaFuncionarios extends JFrame {
 		contentPane.add(btnPesquisar);
 		
 		btnAdd = new JButton("");
+		btnAdd.setToolTipText("Novo funcion\u00E1rio");
 		Image imgadd = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
 		btnAdd.setIcon(new ImageIcon(imgadd));
 		btnAdd.addActionListener(new ActionListener() {
@@ -197,6 +199,7 @@ public class TabelaFuncionarios extends JFrame {
 		contentPane.add(btnAdd);
 		
 		btnAtualiza = new JButton("");
+		btnAtualiza.setToolTipText("Atualizar");
 		Image imgatualiza = new ImageIcon(this.getClass().getResource("/atualiza.png")).getImage();
 		btnAtualiza.setIcon(new ImageIcon(imgatualiza));
 		

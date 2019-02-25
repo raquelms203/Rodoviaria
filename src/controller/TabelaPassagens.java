@@ -245,6 +245,7 @@ public class TabelaPassagens extends JFrame {
 		Image imgadd = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
 				
 		JButton btnAdd = new JButton("");
+		btnAdd.setToolTipText("Nova passagem");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NovaPassagem vp = new NovaPassagem();
@@ -258,6 +259,7 @@ public class TabelaPassagens extends JFrame {
 		Image imgdel = new ImageIcon(this.getClass().getResource("/trash.png")).getImage();
 		
 		JButton btnApaga = new JButton("");
+		btnApaga.setToolTipText("Apagar");
 		btnApaga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int linha_selecionada = tabelaPassagens.getSelectedRow();
@@ -290,6 +292,7 @@ public class TabelaPassagens extends JFrame {
 		Image imgsearch = new ImageIcon(this.getClass().getResource("/search.png")).getImage();
 	
 		JButton btnPesquisa = new JButton("");
+		btnPesquisa.setToolTipText("Pesquisar");
 		btnPesquisa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pesquisa(txtDestino.getText());
@@ -307,6 +310,7 @@ public class TabelaPassagens extends JFrame {
 		Image imgatualiza = new ImageIcon(this.getClass().getResource("/atualiza.png")).getImage();
 		
 		JButton btnAtualiza = new JButton("");
+		btnAtualiza.setToolTipText("Atualizar");
 		btnAtualiza.setIcon(new ImageIcon(imgatualiza));
 		btnAtualiza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

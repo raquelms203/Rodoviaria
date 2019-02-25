@@ -8,6 +8,7 @@ import controller.TabelaPoltronas;
 import model.SqliteConnection;
 import javax.swing.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.awt.*;
@@ -157,7 +158,7 @@ public class ViewBilheteria extends JFrame {
 			// return id;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(null, tp);
 		}
 		return -1;
 	}
@@ -170,8 +171,8 @@ public class ViewBilheteria extends JFrame {
 	public void registraCompra(String caixa) {
 		try {
 			Connection connec = SqliteConnection.dbBilheteria();
-			String query = "INSERT INTO compras (partida_cidade, destino_cidade, partida_horario, destino_horario,  cliente, caixa, data) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO compras (partida_cidade, destino_cidade, partida_horario, destino_horario,  cliente, caixa, data, poltrona) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement prep = connec.prepareStatement(query);
 			prep.setString(1, txtPartida.getText());
@@ -181,15 +182,18 @@ public class ViewBilheteria extends JFrame {
 			prep.setString(5, txtCliente.getText());
 			prep.setString(6, caixa);
 			prep.setString(7, txtHorario.getText());
+			prep.setString(8, tp.getPoltronas().toString());
 
 			prep.execute();
 			prep.close();
 			connec.close();
 			JOptionPane.showMessageDialog(tp, "Compra realizada com sucesso!");
+			ArrayList<String> poltronas = tp.getPoltronas();
+			JOptionPane.showMessageDialog(tp, (poltronas.get(0)+" "+poltronas.get(1)));
 			limparCampos();
 		} catch (SQLException e) {
 			// TODO: handle exception
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(tp, e);
 		}
 	}
 

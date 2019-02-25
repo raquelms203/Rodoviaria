@@ -86,7 +86,7 @@ public class TabelaCompras extends JFrame {
 	public void mostrarTabela() {
 		try {
 			Connection connec = SqliteConnection.dbBilheteria();
-			String query = "SELECT partida_cidade, destino_cidade, partida_horario, destino_horario, data, cliente, caixa "
+			String query = "SELECT partida_cidade, destino_cidade, partida_horario, destino_horario, data, poltrona, cliente, caixa "
 					+ "FROM compras ORDER BY data DESC";
 			PreparedStatement prep = connec.prepareStatement(query);
 			ResultSet rs = prep.executeQuery();
@@ -188,6 +188,7 @@ public class TabelaCompras extends JFrame {
 		Image imgsearch = new ImageIcon(this.getClass().getResource("/search.png")).getImage();
 
 		JButton btnPesquisar = new JButton("");
+		btnPesquisar.setToolTipText("Pesquisar");
 		btnPesquisar.setBounds(404, 9, 24, 24);
 		btnPesquisar.setIcon(new ImageIcon(imgsearch));
 		contentPane.add(btnPesquisar);
@@ -195,6 +196,7 @@ public class TabelaCompras extends JFrame {
 		Image imgatualiza = new ImageIcon(this.getClass().getResource("/atualiza.png")).getImage();
 		
 		btnAtualiza = new JButton("");
+		btnAtualiza.setToolTipText("Atualizar");
 		btnAtualiza.setIcon(new ImageIcon(imgatualiza));
 		btnAtualiza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

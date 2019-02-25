@@ -230,6 +230,7 @@ public class AlterarFuncionario extends JFrame {
 		txtPesquisa.setColumns(10);
 		
 		JButton btnPesquisa = new JButton("");
+		btnPesquisa.setToolTipText("Pesquisar");
 		btnPesquisa.setBounds(277, 18, 20, 20);
 		painelPesquisar.add(btnPesquisa);
 		/// USO DO IMAGEICON DE PESQUISA
