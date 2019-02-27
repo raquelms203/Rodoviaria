@@ -60,6 +60,7 @@ public class TabelaPoltronas extends JFrame {
 	private JPanel panelLegendas;
 	private JButton btnValidar;
 	private ArrayList<String> poltronas = new ArrayList<String>();
+
 	/**
 	 * Launch the application.
 	 */
@@ -153,15 +154,21 @@ public class TabelaPoltronas extends JFrame {
 			}
 		});
 	}
-	
-	/** Adiciona a um ArrayList String, as poltronas selecionadas para a compra. 
+
+	/**
+	 * Adiciona a um ArrayList String, as poltronas selecionadas para a compra.
+	 * 
 	 * @param campo
 	 */
-	public void poltronasSelecionadas(JTextField campo) {
-		if (campo.getBackground() == Color.DARK_GRAY) 
+	public boolean poltronas_selecionada(JTextField campo) {
+		if (campo.getBackground() == Color.DARK_GRAY) {
 			this.poltronas.add(campo.getName());
+			return true;
+		}
+		else
+			return false;
 	}
-	
+
 	/**
 	 * Fecha a Frame.
 	 */
@@ -169,6 +176,13 @@ public class TabelaPoltronas extends JFrame {
 		this.dispose();
 	}
 
+	public boolean erro_validacao (JTextField campo) {
+		if(!poltronas_selecionada(campo)) {
+			JOptionPane.showMessageDialog(null, "Nenhuma poltrona selecionada!", "", JOptionPane.ERROR_MESSAGE);
+			return true;
+		} else
+			return false;
+	}
 	/**
 	 * Função para atualizar os valores da poltrona no banco de dados. O valor
 	 * default no banco de dados é 0.
@@ -181,6 +195,8 @@ public class TabelaPoltronas extends JFrame {
 	public void atualizarTabela(char linha, int coluna, int id, JTextField campo) {
 		btnValidar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(erro_validacao(campo))
+					return;
 				try {
 					Connection connec = SqliteConnection.dbBilheteria();
 					String query = "UPDATE poltronas SET " + linha + coluna + "='" + campo.getText()
@@ -190,11 +206,11 @@ public class TabelaPoltronas extends JFrame {
 					prep.close();
 					connec.close();
 					btnValidar.setEnabled(false);
-					poltronasSelecionadas(campo);
+					poltronas_selecionada(campo);
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, e);
 				}
-				
+
 			}
 		});
 	}
@@ -212,10 +228,10 @@ public class TabelaPoltronas extends JFrame {
 		mudarValor(linha, coluna, id, campo);
 		atualizarTabela(linha, coluna, id, campo);
 	}
-	
+
 	/**
 	 * Getters e Setters.
-	 */	
+	 */
 	public ArrayList<String> getPoltronas() {
 		return poltronas;
 	}
@@ -247,7 +263,7 @@ public class TabelaPoltronas extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		panelPoltronas = new JPanel();
 		panelPoltronas.setBounds(30, 39, 180, 186);
 		contentPane.add(panelPoltronas);
