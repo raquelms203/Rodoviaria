@@ -269,6 +269,40 @@ public class TabelaPoltronas extends JFrame {
 		contentPane.add(panelPoltronas);
 		panelPoltronas.setLayout(null);
 
+		txtD1 = new JTextField();
+		txtD1.setEnabled(false);
+		txtD1.setEditable(false);
+		txtD1.setText("0");
+		txtD1.setName("D1");
+		txtD1.setBounds(0, 133, 30, 20);
+		panelPoltronas.add(txtD1);
+		txtD1.setColumns(10);
+		txtD1.setBackground(Color.GREEN);
+		txtD1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				mudarValor('D', 1, idPassagem, txtD1);
+			}
+		});
+		iniciarPoltrona('D', 1, idPassagem, txtD1);
+
+		txtC1 = new JTextField();
+		txtC1.setEnabled(false);
+		txtC1.setEditable(false);
+		txtC1.setText("0");
+		txtC1.setName("C1");
+		txtC1.setBounds(0, 102, 30, 20);
+		panelPoltronas.add(txtC1);
+		txtC1.setColumns(10);
+		txtC1.setBackground(Color.GREEN);
+		txtC1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				mudarValor('C', 1, idPassagem, txtC1);
+			}
+		});
+		iniciarPoltrona('C', 1, idPassagem, txtC1);
+
 		txtA1 = new JTextField();
 		txtA1.setEnabled(false);
 		txtA1.setEditable(false);
@@ -328,22 +362,6 @@ public class TabelaPoltronas extends JFrame {
 			}
 		});
 
-		txtC1 = new JTextField();
-		txtC1.setEnabled(false);
-		txtC1.setEditable(false);
-		txtC1.setText("0");
-		txtC1.setName("C1");
-		txtC1.setBounds(0, 102, 30, 20);
-		panelPoltronas.add(txtC1);
-		txtC1.setColumns(10);
-		txtC1.setBackground(Color.GREEN);
-		txtC1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('C', 1, idPassagem, txtC1);
-			}
-		});
-
 		txtC2 = new JTextField();
 		txtC2.setEnabled(false);
 		txtC2.setEditable(false);
@@ -357,22 +375,6 @@ public class TabelaPoltronas extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				mudarValor('C', 2, idPassagem, txtC2);
-			}
-		});
-
-		txtD1 = new JTextField();
-		txtD1.setEnabled(false);
-		txtD1.setEditable(false);
-		txtD1.setText("0");
-		txtD1.setName("D1");
-		txtD1.setBounds(0, 133, 30, 20);
-		panelPoltronas.add(txtD1);
-		txtD1.setColumns(10);
-		txtD1.setBackground(Color.GREEN);
-		txtD1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('D', 1, idPassagem, txtD1);
 			}
 		});
 
@@ -582,7 +584,7 @@ public class TabelaPoltronas extends JFrame {
 		});
 
 		panelLegendas = new JPanel();
-		panelLegendas.setBounds(10, 82, 190, 165);
+		panelLegendas.setBounds(10, 79, 192, 168);
 		contentPane.add(panelLegendas);
 		panelLegendas.setLayout(null);
 
@@ -611,26 +613,6 @@ public class TabelaPoltronas extends JFrame {
 		panelLegendas.add(lblE);
 		lblE.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
-		JLabel label = new JLabel("1");
-		label.setBounds(28, 145, 20, 20);
-		panelLegendas.add(label);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JLabel label_1 = new JLabel("2");
-		label_1.setBounds(65, 145, 20, 20);
-		panelLegendas.add(label_1);
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JLabel label_2 = new JLabel("3");
-		label_2.setBounds(132, 145, 20, 20);
-		panelLegendas.add(label_2);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JLabel label_3 = new JLabel("4");
-		label_3.setBounds(172, 145, 20, 20);
-		panelLegendas.add(label_3);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
 		Image imgok = new ImageIcon(this.getClass().getResource("/ok.png")).getImage();
 		Image imgvolante = new ImageIcon(this.getClass().getResource("/volante.png")).getImage();
 
@@ -648,11 +630,9 @@ public class TabelaPoltronas extends JFrame {
 		iniciarPoltrona('B', 2, idPassagem, txtB2);
 		iniciarPoltrona('B', 3, idPassagem, txtB3);
 		iniciarPoltrona('B', 4, idPassagem, txtB4);
-		iniciarPoltrona('C', 1, idPassagem, txtC1);
 		iniciarPoltrona('C', 2, idPassagem, txtC2);
 		iniciarPoltrona('C', 3, idPassagem, txtC3);
 		iniciarPoltrona('C', 4, idPassagem, txtC4);
-		iniciarPoltrona('D', 1, idPassagem, txtD1);
 		iniciarPoltrona('D', 2, idPassagem, txtD2);
 		iniciarPoltrona('D', 3, idPassagem, txtD3);
 		iniciarPoltrona('D', 4, idPassagem, txtD4);
