@@ -18,8 +18,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
 /**
- * Frame do login 'caixa'
  * 
  * @author raquelms203
  *
@@ -39,6 +41,7 @@ public class ViewBilheteria extends JFrame {
 	private TabelaPoltronas tp = null;
 	private JTextField txtTroco;
 	private JTextField txtResult;
+	private double preco = -1;
 
 	/**
 	 * Launch the application.
@@ -109,7 +112,7 @@ public class ViewBilheteria extends JFrame {
 
 			Connection connec = SqliteConnection.dbBilheteria();
 			String query = "SELECT partida_horario, preco FROM passagens WHERE destino_cidade=? ";
-
+			String mascara_preco="";
 			PreparedStatement prep = connec.prepareStatement(query);
 			prep.setString(1, cidade);
 			ResultSet rs;
@@ -117,9 +120,10 @@ public class ViewBilheteria extends JFrame {
 
 			while (rs.next()) {
 				comboHPartida.addItem(rs.getString("partida_horario"));
-				txtPreco.setText(rs.getString("preco"));
+				this.preco = rs.getDouble("preco");
+				mascara_preco = String.format("R$ %.2f", this.preco);
+				txtPreco.setText(mascara_preco);
 			}
-
 			rs.close();
 			prep.close();
 			connec.close();
@@ -164,13 +168,16 @@ public class ViewBilheteria extends JFrame {
 		}
 		return -1;
 	}
-	
+
 	public void calcularTroco() {
 		if (!txtTroco.getText().isEmpty()) {
-			float preco = Float.parseFloat(txtPreco.getText());
-			float troco = Float.parseFloat(txtTroco.getText());
-			float result = troco - preco;
-			txtResult.setText(""+result);
+			if (txtTroco.getText().contains(","))
+				txtTroco.setText(txtTroco.getText().replace(",", "."));
+			
+			double troco = Double.parseDouble(txtTroco.getText());
+			double result = troco - this.preco;
+			String mascara_resultado = String.format("R$ %.2f", result);
+			txtResult.setText(mascara_resultado);
 			txtResult.setVisible(true);
 		}
 	}
@@ -201,7 +208,7 @@ public class ViewBilheteria extends JFrame {
 			connec.close();
 			JOptionPane.showMessageDialog(tp, "Compra realizada com sucesso!");
 			ArrayList<String> poltronas = tp.getPoltronas();
-			JOptionPane.showMessageDialog(tp, (poltronas.get(0)+" "+poltronas.get(1)));
+			JOptionPane.showMessageDialog(tp, (poltronas.get(0) + " " + poltronas.get(1)));
 			limparCampos();
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -230,7 +237,7 @@ public class ViewBilheteria extends JFrame {
 		txtCliente.setText("");
 		tp.closeFrame();
 	}
-	
+
 	/**
 	 * Formata a data e horário para dois dígitos.
 	 * 
@@ -333,28 +340,27 @@ public class ViewBilheteria extends JFrame {
 		txtPartida.setText("JOAO MONLEVADE");
 
 		mostrarCidades();
-		comboCDestino.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		comboCDestino.addKeyListener(new KeyAdapter() {
+		comboCDestino.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					mostrarHPartida(comboCDestino.getSelectedItem().toString());
-				}
+			public void focusLost(FocusEvent arg0) {
+				mostrarHPartida(comboCDestino.getSelectedItem().toString());
 			}
 		});
+		comboCDestino.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		comboCDestino.setEditable(false);
 		comboCDestino.setMaximumRowCount(50);
 		comboCDestino.setBounds(368, 56, 231, 44);
 		contentPane.add(comboCDestino);
 		comboHPartida.setBackground(SystemColor.inactiveCaption);
 		comboHPartida.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		comboHPartida.addKeyListener(new KeyAdapter() {
+		comboHPartida.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
+			public void focusLost(FocusEvent e) {
 				mostrarHDestino();
 				mostrarPanelPoltronas();
 			}
 		});
+		
 
 		comboHPartida.setMaximumRowCount(50);
 		comboHPartida.setBounds(67, 148, 92, 44);
@@ -443,7 +449,7 @@ public class ViewBilheteria extends JFrame {
 		});
 		btnAtualiza.setBounds(67, 4, 24, 24);
 		contentPane.add(btnAtualiza);
-		
+
 		txtTroco = new JTextField();
 		txtTroco.addKeyListener(new KeyAdapter() {
 			@Override
@@ -456,19 +462,19 @@ public class ViewBilheteria extends JFrame {
 		txtTroco.setBounds(206, 231, 92, 44);
 		contentPane.add(txtTroco);
 		txtTroco.setColumns(10);
-		
+
 		JLabel lblTroco = new JLabel("Troco?");
 		lblTroco.setBounds(206, 214, 46, 14);
 		contentPane.add(lblTroco);
-		
+
 		txtResult = new JTextField();
+		txtResult.setBackground(new Color(102, 204, 153));
 		txtResult.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtResult.setEnabled(false);
-		txtResult.setEditable(false);
+		txtResult.setEnabled(true);
 		txtResult.setVisible(false);
 		txtResult.setColumns(10);
 		txtResult.setBounds(308, 231, 92, 44);
 		contentPane.add(txtResult);
-		
+
 	}
 }

@@ -89,8 +89,8 @@ public class Login {
 					va.setVisible(true); /// EXIBE A FRAME
 					
 				}  else if (rs.getString("cargo").equalsIgnoreCase("caixa")) {
-					ViewBilheteria vb  = new ViewBilheteria(txtLogin.getText());
-					vb.setVisible(true);
+					ViewBilheteria cp  = new ViewBilheteria(txtLogin.getText());
+					cp.setVisible(true);
 				}
 				
 				frame.setVisible(false);					

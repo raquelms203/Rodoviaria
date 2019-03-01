@@ -58,8 +58,12 @@ public class TabelaPoltronas extends JFrame {
 	private JTextField txtE4;
 	private JPanel panelPoltronas;
 	private JPanel panelLegendas;
-	private JButton btnValidar;
+	private JButton btnValidar = new JButton("");
 	private ArrayList<String> poltronas = new ArrayList<String>();
+	private JLabel label;
+	private JLabel label_1;
+	private JLabel label_2;
+	private JLabel label_3;
 	/**
 	 * Launch the application.
 	 */
@@ -249,7 +253,7 @@ public class TabelaPoltronas extends JFrame {
 		contentPane.setLayout(null);
 		
 		panelPoltronas = new JPanel();
-		panelPoltronas.setBounds(30, 39, 180, 186);
+		panelPoltronas.setBounds(30, 39, 180, 181);
 		contentPane.add(panelPoltronas);
 		panelPoltronas.setLayout(null);
 
@@ -258,7 +262,7 @@ public class TabelaPoltronas extends JFrame {
 		txtD1.setEditable(false);
 		txtD1.setText("0");
 		txtD1.setName("D1");
-		txtD1.setBounds(0, 133, 30, 20);
+		txtD1.setBounds(0, 131, 30, 20);
 		panelPoltronas.add(txtD1);
 		txtD1.setColumns(10);
 		txtD1.setBackground(Color.GREEN);
@@ -270,23 +274,6 @@ public class TabelaPoltronas extends JFrame {
 		});
 		iniciarPoltrona('D', 1, idPassagem, txtD1);
 
-		txtC1 = new JTextField();
-		txtC1.setEnabled(false);
-		txtC1.setEditable(false);
-		txtC1.setText("0");
-		txtC1.setName("C1");
-		txtC1.setBounds(0, 102, 30, 20);
-		panelPoltronas.add(txtC1);
-		txtC1.setColumns(10);
-		txtC1.setBackground(Color.GREEN);
-		txtC1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('C', 1, idPassagem, txtC1);
-			}
-		});
-		iniciarPoltrona('C', 1, idPassagem, txtC1);
-
 		txtA1 = new JTextField();
 		txtA1.setEnabled(false);
 		txtA1.setEditable(false);
@@ -297,6 +284,12 @@ public class TabelaPoltronas extends JFrame {
 		txtA1.setBackground(Color.GREEN);
 		mudarValor('A', 1, idPassagem, txtA1);
 		txtA1.setColumns(10);
+		txtA1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				mudarValor('A', 1, idPassagem, txtA1);
+			}
+		});
 
 		txtA2 = new JTextField();
 		txtA2.setEnabled(false);
@@ -335,7 +328,7 @@ public class TabelaPoltronas extends JFrame {
 		txtB2.setEditable(false);
 		txtB2.setText("0");
 		txtB2.setName("B2");
-		txtB2.setBounds(40, 72, 30, 20);
+		txtB2.setBounds(40, 71, 30, 20);
 		panelPoltronas.add(txtB2);
 		txtB2.setColumns(10);
 		txtB2.setBackground(Color.GREEN);
@@ -345,13 +338,30 @@ public class TabelaPoltronas extends JFrame {
 				mudarValor('B', 2, idPassagem, txtB2);
 			}
 		});
+		
+				txtC1 = new JTextField();
+				txtC1.setEnabled(false);
+				txtC1.setEditable(false);
+				txtC1.setText("0");
+				txtC1.setName("C1");
+				txtC1.setBounds(0, 101, 30, 20);
+				panelPoltronas.add(txtC1);
+				txtC1.setColumns(10);
+				txtC1.setBackground(Color.GREEN);
+				txtC1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						mudarValor('C', 1, idPassagem, txtC1);
+					}
+				});
+				iniciarPoltrona('C', 1, idPassagem, txtC1);
 
 		txtC2 = new JTextField();
 		txtC2.setEnabled(false);
 		txtC2.setEditable(false);
 		txtC2.setText("0");
 		txtC2.setName("C2");
-		txtC2.setBounds(40, 102, 30, 20);
+		txtC2.setBounds(40, 101, 30, 20);
 		panelPoltronas.add(txtC2);
 		txtC2.setColumns(10);
 		txtC2.setBackground(Color.GREEN);
@@ -367,7 +377,7 @@ public class TabelaPoltronas extends JFrame {
 		txtE1.setEditable(false);
 		txtE1.setText("0");
 		txtE1.setName("E1");
-		txtE1.setBounds(0, 164, 30, 20);
+		txtE1.setBounds(0, 161, 30, 20);
 		panelPoltronas.add(txtE1);
 		txtE1.setColumns(10);
 		txtE1.setBackground(Color.GREEN);
@@ -383,7 +393,7 @@ public class TabelaPoltronas extends JFrame {
 		txtD2.setEditable(false);
 		txtD2.setText("0");
 		txtD2.setName("D2");
-		txtD2.setBounds(40, 133, 30, 20);
+		txtD2.setBounds(40, 131, 30, 20);
 		panelPoltronas.add(txtD2);
 		txtD2.setColumns(10);
 		txtD2.setBackground(Color.GREEN);
@@ -399,7 +409,7 @@ public class TabelaPoltronas extends JFrame {
 		txtE2.setEditable(false);
 		txtE2.setText("0");
 		txtE2.setName("E2");
-		txtE2.setBounds(40, 164, 30, 20);
+		txtE2.setBounds(40, 161, 30, 20);
 		panelPoltronas.add(txtE2);
 		txtE2.setColumns(10);
 		txtE2.setBackground(Color.GREEN);
@@ -479,7 +489,7 @@ public class TabelaPoltronas extends JFrame {
 		txtC3.setEditable(false);
 		txtC3.setText("0");
 		txtC3.setName("C3");
-		txtC3.setBounds(102, 102, 30, 20);
+		txtC3.setBounds(102, 101, 30, 20);
 		panelPoltronas.add(txtC3);
 		txtC3.setColumns(10);
 		txtC3.setBackground(Color.GREEN);
@@ -494,7 +504,7 @@ public class TabelaPoltronas extends JFrame {
 		txtC4.setEditable(false);
 		txtC4.setText("0");
 		txtC4.setName("C4");
-		txtC4.setBounds(142, 102, 30, 20);
+		txtC4.setBounds(142, 101, 30, 20);
 		panelPoltronas.add(txtC4);
 		txtC4.setColumns(10);
 		txtC4.setBackground(Color.GREEN);
@@ -510,7 +520,7 @@ public class TabelaPoltronas extends JFrame {
 		txtD3.setEditable(false);
 		txtD3.setText("0");
 		txtD3.setName("D3");
-		txtD3.setBounds(102, 133, 30, 20);
+		txtD3.setBounds(102, 131, 30, 20);
 		panelPoltronas.add(txtD3);
 		txtD3.setColumns(10);
 		txtD3.setBackground(Color.GREEN);
@@ -526,7 +536,7 @@ public class TabelaPoltronas extends JFrame {
 		txtD4.setEditable(false);
 		txtD4.setText("0");
 		txtD4.setName("D4");
-		txtD4.setBounds(142, 133, 30, 20);
+		txtD4.setBounds(142, 131, 30, 20);
 		panelPoltronas.add(txtD4);
 		txtD4.setColumns(10);
 		txtD4.setBackground(Color.GREEN);
@@ -541,7 +551,7 @@ public class TabelaPoltronas extends JFrame {
 		txtE3.setEditable(false);
 		txtE3.setText("0");
 		txtE3.setName("E3");
-		txtE3.setBounds(102, 164, 30, 20);
+		txtE3.setBounds(102, 161, 30, 20);
 		panelPoltronas.add(txtE3);
 		txtE3.setColumns(10);
 		txtE3.setBackground(Color.GREEN);
@@ -556,7 +566,7 @@ public class TabelaPoltronas extends JFrame {
 		txtE4.setEditable(false);
 		txtE4.setText("0");
 		txtE4.setName("E4");
-		txtE4.setBounds(142, 164, 30, 20);
+		txtE4.setBounds(142, 161, 30, 20);
 		panelPoltronas.add(txtE4);
 		txtE4.setColumns(10);
 		txtE4.setBackground(Color.GREEN);
@@ -583,7 +593,7 @@ public class TabelaPoltronas extends JFrame {
 		lblB.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		JLabel lblC = new JLabel("C");
-		lblC.setBounds(0, 61, 20, 20);
+		lblC.setBounds(0, 60, 20, 20);
 		panelLegendas.add(lblC);
 		lblC.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
@@ -593,14 +603,33 @@ public class TabelaPoltronas extends JFrame {
 		lblD.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		JLabel lblE = new JLabel("E");
-		lblE.setBounds(0, 123, 20, 20);
+		lblE.setBounds(1, 120, 20, 20);
 		panelLegendas.add(lblE);
 		lblE.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		label = new JLabel("1");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		label.setBounds(30, 142, 20, 20);
+		panelLegendas.add(label);
+		
+		label_1 = new JLabel("2");
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		label_1.setBounds(70, 142, 20, 20);
+		panelLegendas.add(label_1);
+		
+		label_2 = new JLabel("3");
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		label_2.setBounds(129, 142, 20, 20);
+		panelLegendas.add(label_2);
+		
+		label_3 = new JLabel("4");
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		label_3.setBounds(172, 142, 20, 20);
+		panelLegendas.add(label_3);
 
 		Image imgok = new ImageIcon(this.getClass().getResource("/ok.png")).getImage();
 		Image imgvolante = new ImageIcon(this.getClass().getResource("/volante.png")).getImage();
 
-		btnValidar = new JButton("");
 		btnValidar.setToolTipText("Salvar");
 		btnValidar.setIcon(new ImageIcon(imgok));
 		btnValidar.setBounds(220, 184, 41, 41);
