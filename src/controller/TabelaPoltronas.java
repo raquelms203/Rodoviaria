@@ -338,22 +338,22 @@ public class TabelaPoltronas extends JFrame {
 			}
 		});
 		
-				txtC1 = new JTextField();
-				txtC1.setEnabled(false);
-				txtC1.setEditable(false);
-				txtC1.setText("0");
-				txtC1.setName("C1");
-				txtC1.setBounds(0, 101, 30, 20);
-				panelPoltronas.add(txtC1);
-				txtC1.setColumns(10);
-				txtC1.setBackground(Color.GREEN);
-				txtC1.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent arg0) {
-						mudar_valor('C', 1, idPassagem, txtC1);
-					}
-				});
-				iniciarPoltrona('C', 1, idPassagem, txtC1);
+		txtC1 = new JTextField();
+		txtC1.setEnabled(false);
+		txtC1.setEditable(false);
+		txtC1.setText("0");
+		txtC1.setName("C1");
+		txtC1.setBounds(0, 101, 30, 20);
+		panelPoltronas.add(txtC1);
+		txtC1.setColumns(10);
+		txtC1.setBackground(Color.GREEN);
+		txtC1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				mudar_valor('C', 1, idPassagem, txtC1);
+			}
+		});
+		iniciarPoltrona('C', 1, idPassagem, txtC1);
 
 		txtC2 = new JTextField();
 		txtC2.setEnabled(false);

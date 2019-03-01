@@ -2,7 +2,12 @@ package view;
 
 
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -99,5 +104,18 @@ public class ViewADM extends JFrame {
 		cp.getTxtHorario().setVisible(false);
 		painelBilheteria = (JPanel) cp.getContentPane();
 		tabbedPane.addTab("Bilheteria", null, painelBilheteria, null);		
+		
+		Image imgoff = new ImageIcon(this.getClass().getResource("/off.png")).getImage();
+		
+		JButton btnOff = new JButton("");
+		btnOff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnOff.setBounds(940, 4, 24, 24);
+		btnOff.setIcon(new ImageIcon(imgoff));
+		
+		contentPane.add(btnOff);
 	}
 }
