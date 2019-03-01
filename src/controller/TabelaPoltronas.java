@@ -121,7 +121,7 @@ public class TabelaPoltronas extends JFrame {
 			connec.close();
 
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(this, e);
 		}
 		mudar_valor(linha, coluna, id, campo);
 	}
@@ -200,6 +200,46 @@ public class TabelaPoltronas extends JFrame {
 				}
 			}
 		});
+	}
+	
+
+	public void encerrar_poltronas() {
+		
+		int op = JOptionPane.showConfirmDialog(this, "Deseja mesmo encerrar as passagens de hoje?", "Aviso",
+					2, JOptionPane.QUESTION_MESSAGE);
+		if (op==2)
+			return;
+		
+		try {
+			Connection connec = SqliteConnection.dbBilheteria();
+			String query =    "UPDATE poltronas SET A1='0';"
+							+ "UPDATE poltronas SET A2='0';"
+							+ "UPDATE poltronas SET A3='0';"
+							+ "UPDATE poltronas SET A4='0';"
+							+ "UPDATE poltronas SET B1='0';"
+							+ "UPDATE poltronas SET B2='0';"
+							+ "UPDATE poltronas SET B3='0';"
+							+ "UPDATE poltronas SET B4='0';"
+							+ "UPDATE poltronas SET C1='0';"
+							+ "UPDATE poltronas SET C2='0';"
+							+ "UPDATE poltronas SET C3='0';"
+							+ "UPDATE poltronas SET C4='0';"
+							+ "UPDATE poltronas SET D1='0';"
+							+ "UPDATE poltronas SET D2='0';"
+							+ "UPDATE poltronas SET D3='0';"
+							+ "UPDATE poltronas SET D4='0';"
+							+ "UPDATE poltronas SET E1='0';"
+							+ "UPDATE poltronas SET E2='0';"
+							+ "UPDATE poltronas SET E3='0';"
+							+ "UPDATE poltronas SET E4='0';";
+					
+			PreparedStatement prep = connec.prepareStatement(query);
+			prep.execute();
+			prep.close();
+			connec.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(this, e);
+		}
 	}
 
 	/**

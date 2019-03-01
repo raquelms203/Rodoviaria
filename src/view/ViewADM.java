@@ -1,6 +1,7 @@
 package view;
 
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -9,12 +10,17 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.TabelaCompras;
 import controller.TabelaFuncionarios;
 import controller.TabelaPassagens;
+import controller.TabelaPoltronas;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -68,14 +74,48 @@ public class ViewADM extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(938, 5, 24, 24);
+		contentPane.add(menuBar);
+		
+		Image imgoff = new ImageIcon(this.getClass().getResource("/off.png")).getImage();
+		JMenu menu = new JMenu("\"\"");
+		menu.setOpaque(true);
+		menu.setBackground(new Color(220, 220, 220));
+		menu.setIcon(new ImageIcon(imgoff));
+		menuBar.add(menu);
+		
+		ViewBilheteria vb = new ViewBilheteria(adm);		
+		JMenuItem menuEnc = new JMenuItem("Encerrar Passagens");
+		menuEnc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vb.limpar_poltronas();
+			}
+		});
+		menu.add(menuEnc);
+		
+		JMenuItem menuTrocar = new JMenuItem("Trocar Usuário");
+		menu.add(menuTrocar);
+		
+		Image imgsair = new ImageIcon(this.getClass().getResource("/sair.png")).getImage();
+		
+		JMenuItem menuSair = new JMenuItem("Sair");
+		menuSair.setIcon(new ImageIcon(imgsair));
+		menuSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(1);
+			}
+		});
+		menu.add(menuSair);
+		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBorder(null);
 		tabbedPane.setBounds(2, 8, 1097, 461);
 		contentPane.add(tabbedPane);
 		
-		ViewBilheteria cp = new ViewBilheteria(adm);
+		
 		JTextField txtData = new JTextField();
-		txtData = cp.clock();
+		txtData = vb.clock();
 		txtData.setColumns(10);
 		txtData.setBounds(975, 8, 120, 17);
 		contentPane.add(txtData);
@@ -101,21 +141,8 @@ public class ViewADM extends JFrame {
 		
 		JPanel painelBilheteria = new JPanel();
 		
-		cp.getTxtHorario().setVisible(false);
-		painelBilheteria = (JPanel) cp.getContentPane();
+		vb.getTxtHorario().setVisible(false);
+		painelBilheteria = (JPanel) vb.getContentPane();
 		tabbedPane.addTab("Bilheteria", null, painelBilheteria, null);		
-		
-		Image imgoff = new ImageIcon(this.getClass().getResource("/off.png")).getImage();
-		
-		JButton btnOff = new JButton("");
-		btnOff.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		btnOff.setBounds(940, 4, 24, 24);
-		btnOff.setIcon(new ImageIcon(imgoff));
-		
-		contentPane.add(btnOff);
 	}
 }

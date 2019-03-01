@@ -76,14 +76,13 @@ public class NovoFuncionario extends JFrame {
 		if (txtNome.getText() == "" || txtCargo.getText() == "" || txtUser.getText() == "" || txtpass == "") {
 			JOptionPane.showMessageDialog(null, "Campo(s) vazio!");
 			return;
-			
 		}
 		
 		try {
 			connec = SqliteConnection.dbBilheteria();
 			String query = "INSERT INTO funcionarios (nome, user, senha, cargo) VALUES (?, ?, ?, ?) ";
 			PreparedStatement ps = connec.prepareStatement(query);
-			ps.setString(1, txtNome.getText());
+			ps.setString(1, txtNome.getText().toUpperCase());
 			ps.setString(2, txtUser.getText());
 			String passText = new String (txtSenha.getPassword());
 			ps.setString(3, passText);
