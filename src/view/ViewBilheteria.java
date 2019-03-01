@@ -8,6 +8,7 @@ import controller.TabelaPoltronas;
 import model.SqliteConnection;
 import javax.swing.*;
 import java.sql.*;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -190,8 +191,8 @@ public class ViewBilheteria extends JFrame {
 	public void registraCompra(String caixa) {
 		try {
 			Connection connec = SqliteConnection.dbBilheteria();
-			String query = "INSERT INTO compras (partida_cidade, destino_cidade, partida_horario, destino_horario,  cliente, caixa, data, poltrona) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO compras (partida_cidade, destino_cidade, partida_horario, destino_horario, "
+					+ " cliente, caixa, data, poltrona) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement prep = connec.prepareStatement(query);
 			prep.setString(1, txtPartida.getText());
@@ -280,6 +281,8 @@ public class ViewBilheteria extends JFrame {
 						txtData.setText(dia + "/" + mes + "/" + ano + " " + hora + ":" + min + ":" + seg + "  ");
 
 						sleep(1000);
+						
+					
 					}
 				} catch (InterruptedException e) {
 					// TODO: handle exception
