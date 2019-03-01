@@ -207,8 +207,7 @@ public class ViewBilheteria extends JFrame {
 			prep.close();
 			connec.close();
 			JOptionPane.showMessageDialog(tp, "Compra realizada com sucesso!");
-			ArrayList<String> poltronas = tp.getPoltronas();
-			JOptionPane.showMessageDialog(tp, (poltronas.get(0) + " " + poltronas.get(1)));
+			
 			limparCampos();
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -422,6 +421,15 @@ public class ViewBilheteria extends JFrame {
 		JButton btnComprar = new JButton("Comprar");
 		btnComprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (txtCliente.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(tp, "Campo 'Cliente' vazio!", "", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if (tp.getPoltronas().isEmpty()) {
+					JOptionPane.showMessageDialog(tp, "Selecione uma poltrona!", "", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+					
 				registraCompra(caixa);
 			}
 		});
@@ -475,6 +483,5 @@ public class ViewBilheteria extends JFrame {
 		txtResult.setColumns(10);
 		txtResult.setBounds(308, 231, 92, 44);
 		contentPane.add(txtResult);
-
 	}
 }

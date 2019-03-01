@@ -100,7 +100,7 @@ public class TabelaPoltronas extends JFrame {
 	 *               construtor dessa Frame.
 	 * @param campo  JTextField referente a linha e coluna
 	 */
-	public void mostrarPoltronas(char linha, int coluna, int id, JTextField campo) {
+	public void mostrar_poltronas(char linha, int coluna, int id, JTextField campo) {
 		try {
 			Connection connec = SqliteConnection.dbBilheteria();
 			String nome_coluna = ("" + linha + coluna);
@@ -123,7 +123,7 @@ public class TabelaPoltronas extends JFrame {
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
-		mudarValor(linha, coluna, id, campo);
+		mudar_valor(linha, coluna, id, campo);
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class TabelaPoltronas extends JFrame {
 	 *               construtor dessa Frame.
 	 * @param campo  JTextField referente a linha e coluna
 	 */
-	public void mudarValor(char linha, int coluna, int id, JTextField campo) {
+	public void mudar_valor(char linha, int coluna, int id, JTextField campo) {
 		campo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -161,7 +161,7 @@ public class TabelaPoltronas extends JFrame {
 	/** Adiciona a um ArrayList String, as poltronas selecionadas para a compra. 
 	 * @param campo
 	 */
-	public void poltronasSelecionadas(JTextField campo) {
+	public void poltronas_selecionadas(JTextField campo) {
 		if (campo.getBackground() == Color.DARK_GRAY) 
 			this.poltronas.add(campo.getName());
 	}
@@ -182,7 +182,7 @@ public class TabelaPoltronas extends JFrame {
 	 * @param id     int referente ao ID da cidade destino, fornecido pelo
 	 *               construtor dessa Frame.
 	 */
-	public void atualizarTabela(char linha, int coluna, int id, JTextField campo) {
+	public void salvar_poltronas(char linha, int coluna, int id, JTextField campo) {
 		btnValidar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -194,11 +194,10 @@ public class TabelaPoltronas extends JFrame {
 					prep.close();
 					connec.close();
 					btnValidar.setEnabled(false);
-					poltronasSelecionadas(campo);
+					poltronas_selecionadas(campo);
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, e);
 				}
-				
 			}
 		});
 	}
@@ -212,9 +211,9 @@ public class TabelaPoltronas extends JFrame {
 	 * @param campo
 	 */
 	public void iniciarPoltrona(char linha, int coluna, int id, JTextField campo) {
-		mostrarPoltronas(linha, coluna, id, campo);
-		mudarValor(linha, coluna, id, campo);
-		atualizarTabela(linha, coluna, id, campo);
+		mostrar_poltronas(linha, coluna, id, campo);
+		mudar_valor(linha, coluna, id, campo);
+		salvar_poltronas(linha, coluna, id, campo);
 	}
 	
 	/**
@@ -269,7 +268,7 @@ public class TabelaPoltronas extends JFrame {
 		txtD1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('D', 1, idPassagem, txtD1);
+				mudar_valor('D', 1, idPassagem, txtD1);
 			}
 		});
 		iniciarPoltrona('D', 1, idPassagem, txtD1);
@@ -282,12 +281,12 @@ public class TabelaPoltronas extends JFrame {
 		txtA1.setBounds(0, 41, 30, 20);
 		panelPoltronas.add(txtA1);
 		txtA1.setBackground(Color.GREEN);
-		mudarValor('A', 1, idPassagem, txtA1);
+		mudar_valor('A', 1, idPassagem, txtA1);
 		txtA1.setColumns(10);
 		txtA1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('A', 1, idPassagem, txtA1);
+				mudar_valor('A', 1, idPassagem, txtA1);
 			}
 		});
 
@@ -303,7 +302,7 @@ public class TabelaPoltronas extends JFrame {
 		txtA2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('A', 2, idPassagem, txtA2);
+				mudar_valor('A', 2, idPassagem, txtA2);
 			}
 		});
 
@@ -319,7 +318,7 @@ public class TabelaPoltronas extends JFrame {
 		txtB1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('B', 1, idPassagem, txtB1);
+				mudar_valor('B', 1, idPassagem, txtB1);
 			}
 		});
 
@@ -335,7 +334,7 @@ public class TabelaPoltronas extends JFrame {
 		txtB2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('B', 2, idPassagem, txtB2);
+				mudar_valor('B', 2, idPassagem, txtB2);
 			}
 		});
 		
@@ -351,7 +350,7 @@ public class TabelaPoltronas extends JFrame {
 				txtC1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						mudarValor('C', 1, idPassagem, txtC1);
+						mudar_valor('C', 1, idPassagem, txtC1);
 					}
 				});
 				iniciarPoltrona('C', 1, idPassagem, txtC1);
@@ -368,7 +367,7 @@ public class TabelaPoltronas extends JFrame {
 		txtC2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('C', 2, idPassagem, txtC2);
+				mudar_valor('C', 2, idPassagem, txtC2);
 			}
 		});
 
@@ -384,7 +383,7 @@ public class TabelaPoltronas extends JFrame {
 		txtE1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('E', 1, idPassagem, txtE1);
+				mudar_valor('E', 1, idPassagem, txtE1);
 			}
 		});
 
@@ -400,7 +399,7 @@ public class TabelaPoltronas extends JFrame {
 		txtD2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('D', 2, idPassagem, txtD2);
+				mudar_valor('D', 2, idPassagem, txtD2);
 			}
 		});
 
@@ -416,7 +415,7 @@ public class TabelaPoltronas extends JFrame {
 		txtE2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('E', 2, idPassagem, txtE2);
+				mudar_valor('E', 2, idPassagem, txtE2);
 			}
 		});
 
@@ -432,7 +431,7 @@ public class TabelaPoltronas extends JFrame {
 		txtA3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('A', 3, idPassagem, txtA3);
+				mudar_valor('A', 3, idPassagem, txtA3);
 			}
 		});
 
@@ -448,7 +447,7 @@ public class TabelaPoltronas extends JFrame {
 		txtA4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('A', 4, idPassagem, txtA4);
+				mudar_valor('A', 4, idPassagem, txtA4);
 			}
 		});
 
@@ -464,7 +463,7 @@ public class TabelaPoltronas extends JFrame {
 		txtB3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('B', 3, idPassagem, txtB3);
+				mudar_valor('B', 3, idPassagem, txtB3);
 			}
 		});
 
@@ -480,7 +479,7 @@ public class TabelaPoltronas extends JFrame {
 		txtB4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('B', 4, idPassagem, txtB4);
+				mudar_valor('B', 4, idPassagem, txtB4);
 			}
 		});
 
@@ -496,7 +495,7 @@ public class TabelaPoltronas extends JFrame {
 		txtC3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('C', 3, idPassagem, txtC3);
+				mudar_valor('C', 3, idPassagem, txtC3);
 			}
 		});
 		txtC4 = new JTextField();
@@ -511,7 +510,7 @@ public class TabelaPoltronas extends JFrame {
 		txtC4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('C', 4, idPassagem, txtC4);
+				mudar_valor('C', 4, idPassagem, txtC4);
 			}
 		});
 
@@ -527,7 +526,7 @@ public class TabelaPoltronas extends JFrame {
 		txtD3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('D', 3, idPassagem, txtD3);
+				mudar_valor('D', 3, idPassagem, txtD3);
 			}
 		});
 
@@ -543,7 +542,7 @@ public class TabelaPoltronas extends JFrame {
 		txtD4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('D', 4, idPassagem, txtD4);
+				mudar_valor('D', 4, idPassagem, txtD4);
 			}
 		});
 		txtE3 = new JTextField();
@@ -558,7 +557,7 @@ public class TabelaPoltronas extends JFrame {
 		txtE3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('E', 3, idPassagem, txtE3);
+				mudar_valor('E', 3, idPassagem, txtE3);
 			}
 		});
 		txtE4 = new JTextField();
@@ -573,7 +572,7 @@ public class TabelaPoltronas extends JFrame {
 		txtE4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				mudarValor('E', 4, idPassagem, txtE4);
+				mudar_valor('E', 4, idPassagem, txtE4);
 			}
 		});
 
