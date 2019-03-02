@@ -234,7 +234,6 @@ public class TabelaPoltronas extends JFrame {
 	 * Create the frame.
 	 */
 	public TabelaPoltronas(int idPassagem) {
-		setAlwaysOnTop(true);
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent arg0) {
 			}

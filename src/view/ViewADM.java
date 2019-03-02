@@ -191,6 +191,7 @@ public class ViewADM extends JFrame {
 		JPanel painelBilheteria = new JPanel();
 
 		vb.getTxtHorario().setVisible(false);
+		vb.menuBar.setVisible(false);
 		painelBilheteria = (JPanel) vb.getContentPane();
 		tabbedPane.addTab("Bilheteria", null, painelBilheteria, null);
 	}

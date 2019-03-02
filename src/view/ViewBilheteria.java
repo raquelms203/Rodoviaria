@@ -43,6 +43,8 @@ public class ViewBilheteria extends JFrame {
 	private JTextField txtTroco;
 	private JTextField txtResult;
 	private double preco = -1;
+	protected JMenuBar menuBar;
+	
 
 	/**
 	 * Launch the application.
@@ -228,7 +230,7 @@ public class ViewBilheteria extends JFrame {
 	}
 
 	/**
-	 * Função para iniciar uma nova compra após o clique do botão ""
+	 * Função para iniciar uma nova compra após o clique do botão "Comprar".
 	 */
 	public void limparCampos() {
 		comboCDestino.setSelectedIndex(1);
@@ -237,6 +239,13 @@ public class ViewBilheteria extends JFrame {
 		txtPreco.setText("");
 		txtCliente.setText("");
 		tp.closeFrame();
+	}
+	
+	/**
+	 * Fecha a frame.
+	 */
+	public void close_frame() {
+		this.dispose();
 	}
 
 	/**
@@ -305,7 +314,7 @@ public class ViewBilheteria extends JFrame {
 	public int getIdPassagem() {
 		return idPassagem;
 	}
-
+	
 	public void setIdPassagem(int idPassagem) {
 		this.idPassagem = idPassagem;
 	}
@@ -359,6 +368,8 @@ public class ViewBilheteria extends JFrame {
 		comboHPartida.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
+				if (tp != null)
+					tp.dispose();
 				mostrarHDestino();
 				mostrarPanelPoltronas();
 			}
@@ -374,6 +385,7 @@ public class ViewBilheteria extends JFrame {
 		contentPane.add(txtHDestino);
 
 		txtCliente = new JTextField();
+		
 		txtCliente.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -490,7 +502,7 @@ public class ViewBilheteria extends JFrame {
 
 		Image imgoff = new ImageIcon(this.getClass().getResource("/off.png")).getImage();
 
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		menuBar.setBounds(100, 5, 24, 24);
 		contentPane.add(menuBar);
 
@@ -501,11 +513,25 @@ public class ViewBilheteria extends JFrame {
 		menuBar.add(menu);
 
 		JMenuItem menuTrocar = new JMenuItem("Trocar Usu\u00E1rio");
+		menuTrocar.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
+			public void actionPerformed(ActionEvent arg0) {
+				close_frame();
+				Login l = new Login();
+				l.main(null);
+			}
+		});
 		menu.add(menuTrocar);
 
 		Image imgsair = new ImageIcon(this.getClass().getResource("/sair.png")).getImage();
 
 		JMenuItem menuSair = new JMenuItem("Sair");
+		menuSair.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(1);
+			}
+		});
 		menuSair.setIcon(new ImageIcon(imgsair));
 		menu.add(menuSair);
 	}
