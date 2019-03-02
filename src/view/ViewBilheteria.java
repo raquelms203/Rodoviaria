@@ -1,5 +1,7 @@
 package view;
 
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 import controller.TabelaPoltronas;
@@ -110,8 +112,9 @@ public class ViewBilheteria extends JFrame {
 			comboHPartida.removeAllItems();
 
 			Connection connec = SqliteConnection.dbBilheteria();
-			String query = "SELECT partida_horario, preco FROM passagens WHERE destino_cidade=? ";
-			String mascara_preco="";
+			String query = "SELECT partida_horario, preco FROM passagens WHERE destino_cidade=? "
+					+ "		ORDER BY partida_horario DESC";
+			String mascara_preco = "";
 			PreparedStatement prep = connec.prepareStatement(query);
 			prep.setString(1, cidade);
 			ResultSet rs;
@@ -172,7 +175,7 @@ public class ViewBilheteria extends JFrame {
 		if (!txtTroco.getText().isEmpty()) {
 			if (txtTroco.getText().contains(","))
 				txtTroco.setText(txtTroco.getText().replace(",", "."));
-			
+
 			double troco = Double.parseDouble(txtTroco.getText());
 			double result = troco - this.preco;
 			String mascara_resultado = String.format("R$ %.2f", result);
@@ -199,14 +202,14 @@ public class ViewBilheteria extends JFrame {
 			prep.setString(4, txtHDestino.getText());
 			prep.setString(5, txtCliente.getText().toUpperCase());
 			prep.setString(6, caixa);
-			prep.setString(7, txtHorario.getText());
+			prep.setString(7, txtHorario.getName());
 			prep.setString(8, tp.getPoltronas().toString());
 
 			prep.execute();
 			prep.close();
 			connec.close();
 			JOptionPane.showMessageDialog(tp, "Compra realizada com sucesso!");
-			
+
 			limparCampos();
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -236,44 +239,6 @@ public class ViewBilheteria extends JFrame {
 		tp.closeFrame();
 	}
 
-	public void limpar_poltronas() {
-			int op = JOptionPane.showConfirmDialog(this, "Deseja mesmo encerrar as passagens de hoje?", "Aviso",
-						2, JOptionPane.QUESTION_MESSAGE);
-			if (op==2)
-				return;
-			
-			try {
-				Connection connec = SqliteConnection.dbBilheteria();
-				String query =    "UPDATE poltronas SET A1='0';"
-								+ "UPDATE poltronas SET A2='0';"
-								+ "UPDATE poltronas SET A3='0';"
-								+ "UPDATE poltronas SET A4='0';"
-								+ "UPDATE poltronas SET B1='0';"
-								+ "UPDATE poltronas SET B2='0';"
-								+ "UPDATE poltronas SET B3='0';"
-								+ "UPDATE poltronas SET B4='0';"
-								+ "UPDATE poltronas SET C1='0';"
-								+ "UPDATE poltronas SET C2='0';"
-								+ "UPDATE poltronas SET C3='0';"
-								+ "UPDATE poltronas SET C4='0';"
-								+ "UPDATE poltronas SET D1='0';"
-								+ "UPDATE poltronas SET D2='0';"
-								+ "UPDATE poltronas SET D3='0';"
-								+ "UPDATE poltronas SET D4='0';"
-								+ "UPDATE poltronas SET E1='0';"
-								+ "UPDATE poltronas SET E2='0';"
-								+ "UPDATE poltronas SET E3='0';"
-								+ "UPDATE poltronas SET E4='0';";
-						
-				PreparedStatement prep = connec.prepareStatement(query);
-				prep.execute();
-				prep.close();
-				connec.close();
-			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(this, e);
-			}
-		}
-	
 	/**
 	 * Formata a data e horário para dois dígitos.
 	 * 
@@ -314,8 +279,10 @@ public class ViewBilheteria extends JFrame {
 						String min = mascara_data(min0);
 						String hora = mascara_data(hora0);
 
-						txtData.setText(dia + "/" + mes + "/" + ano + " " + hora + ":" + min + ":" + seg + "  ");
-
+						txtData.setText(dia + "/" + mes + "/" + ano + " " + hora + ":" + min + ":" + seg+ "");
+						// USADO PARA O BANCO DE DADOS
+						txtData.setName(ano + "/" + mes + "/" + dia + " " + hora + ":" + min + ":" + seg+ ""); 
+						
 						sleep(1000);
 					}
 				} catch (InterruptedException e) {
@@ -396,7 +363,6 @@ public class ViewBilheteria extends JFrame {
 				mostrarPanelPoltronas();
 			}
 		});
-		
 
 		comboHPartida.setMaximumRowCount(50);
 		comboHPartida.setBounds(67, 148, 92, 44);
@@ -466,7 +432,7 @@ public class ViewBilheteria extends JFrame {
 					JOptionPane.showMessageDialog(tp, "Selecione uma poltrona!", "", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-					
+
 				registraCompra(caixa);
 			}
 		});
@@ -476,13 +442,14 @@ public class ViewBilheteria extends JFrame {
 		contentPane.add(btnComprar);
 
 		txtHorario = clock();
-		txtHorario.setBounds(469, 4, 130, 20);
+		txtHorario.setBounds(484, 4, 115, 24);
 		contentPane.add(txtHorario);
 		txtHorario.setColumns(10);
 
 		Image imgatualiza = new ImageIcon(this.getClass().getResource("/atualiza.png")).getImage();
 
 		JButton btnAtualiza = new JButton("");
+		btnAtualiza.setToolTipText("Atualizar");
 		btnAtualiza.setIcon(new ImageIcon(imgatualiza));
 		btnAtualiza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -520,5 +487,26 @@ public class ViewBilheteria extends JFrame {
 		txtResult.setColumns(10);
 		txtResult.setBounds(308, 231, 92, 44);
 		contentPane.add(txtResult);
+
+		Image imgoff = new ImageIcon(this.getClass().getResource("/off.png")).getImage();
+
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(100, 5, 24, 24);
+		contentPane.add(menuBar);
+
+		JMenu menu = new JMenu("");
+		menu.setOpaque(true);
+		menu.setBackground(new Color(220, 220, 220));
+		menu.setIcon(new ImageIcon(imgoff));
+		menuBar.add(menu);
+
+		JMenuItem menuTrocar = new JMenuItem("Trocar Usu\u00E1rio");
+		menu.add(menuTrocar);
+
+		Image imgsair = new ImageIcon(this.getClass().getResource("/sair.png")).getImage();
+
+		JMenuItem menuSair = new JMenuItem("Sair");
+		menuSair.setIcon(new ImageIcon(imgsair));
+		menu.add(menuSair);
 	}
 }

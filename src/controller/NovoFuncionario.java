@@ -104,7 +104,7 @@ public class NovoFuncionario extends JFrame {
 	public NovoFuncionario() {
 		
 		setBackground(new Color(144, 238, 144));
-		setBounds(100, 100, 405, 473);
+		setBounds(100, 100, 406, 478);
 		contentPane = new JPanel();
 		
 		contentPane.setBackground(SystemColor.control);

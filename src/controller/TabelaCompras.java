@@ -150,7 +150,7 @@ public class TabelaCompras extends JFrame {
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 41, 1043, 406);
+		scrollPane.setBounds(12, 41, 1041, 406);
 		contentPane.add(scrollPane);
 		
 		tabelaCompras = new JTable() {

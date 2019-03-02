@@ -89,7 +89,7 @@ public class AlterarFuncionario extends JFrame {
 		String query="";
 				
 		try {
-			query="SELECT * FROM funcionarios WHERE "+listaInfo.getSelectedValue().toString()+"=? ";
+			query = "SELECT * FROM funcionarios WHERE " + listaInfo.getSelectedValue().toString()+"=? ";
 			PreparedStatement prep = connec.prepareStatement(query);
 			prep.setString(1, txtPesquisa.getText());
 			ResultSet rs = prep.executeQuery();

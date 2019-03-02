@@ -64,6 +64,7 @@ public class TabelaPoltronas extends JFrame {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
+
 	/**
 	 * Launch the application.
 	 */
@@ -157,15 +158,17 @@ public class TabelaPoltronas extends JFrame {
 			}
 		});
 	}
-	
-	/** Adiciona a um ArrayList String, as poltronas selecionadas para a compra. 
+
+	/**
+	 * Adiciona a um ArrayList String, as poltronas selecionadas para a compra.
+	 * 
 	 * @param campo
 	 */
 	public void poltronas_selecionadas(JTextField campo) {
-		if (campo.getBackground() == Color.DARK_GRAY) 
+		if (campo.getBackground() == Color.DARK_GRAY)
 			this.poltronas.add(campo.getName());
 	}
-	
+
 	/**
 	 * Fecha a Frame.
 	 */
@@ -201,46 +204,6 @@ public class TabelaPoltronas extends JFrame {
 			}
 		});
 	}
-	
-
-	public void encerrar_poltronas() {
-		
-		int op = JOptionPane.showConfirmDialog(this, "Deseja mesmo encerrar as passagens de hoje?", "Aviso",
-					2, JOptionPane.QUESTION_MESSAGE);
-		if (op==2)
-			return;
-		
-		try {
-			Connection connec = SqliteConnection.dbBilheteria();
-			String query =    "UPDATE poltronas SET A1='0';"
-							+ "UPDATE poltronas SET A2='0';"
-							+ "UPDATE poltronas SET A3='0';"
-							+ "UPDATE poltronas SET A4='0';"
-							+ "UPDATE poltronas SET B1='0';"
-							+ "UPDATE poltronas SET B2='0';"
-							+ "UPDATE poltronas SET B3='0';"
-							+ "UPDATE poltronas SET B4='0';"
-							+ "UPDATE poltronas SET C1='0';"
-							+ "UPDATE poltronas SET C2='0';"
-							+ "UPDATE poltronas SET C3='0';"
-							+ "UPDATE poltronas SET C4='0';"
-							+ "UPDATE poltronas SET D1='0';"
-							+ "UPDATE poltronas SET D2='0';"
-							+ "UPDATE poltronas SET D3='0';"
-							+ "UPDATE poltronas SET D4='0';"
-							+ "UPDATE poltronas SET E1='0';"
-							+ "UPDATE poltronas SET E2='0';"
-							+ "UPDATE poltronas SET E3='0';"
-							+ "UPDATE poltronas SET E4='0';";
-					
-			PreparedStatement prep = connec.prepareStatement(query);
-			prep.execute();
-			prep.close();
-			connec.close();
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(this, e);
-		}
-	}
 
 	/**
 	 * Função para atribuir as ações da Frame nas poltronas.
@@ -255,10 +218,10 @@ public class TabelaPoltronas extends JFrame {
 		mudar_valor(linha, coluna, id, campo);
 		salvar_poltronas(linha, coluna, id, campo);
 	}
-	
+
 	/**
 	 * Getters e Setters.
-	 */	
+	 */
 	public ArrayList<String> getPoltronas() {
 		return poltronas;
 	}
@@ -290,7 +253,7 @@ public class TabelaPoltronas extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		panelPoltronas = new JPanel();
 		panelPoltronas.setBounds(30, 39, 180, 181);
 		contentPane.add(panelPoltronas);
@@ -314,6 +277,7 @@ public class TabelaPoltronas extends JFrame {
 		iniciarPoltrona('D', 1, idPassagem, txtD1);
 
 		txtA1 = new JTextField();
+		txtA1.setToolTipText("");
 		txtA1.setEnabled(false);
 		txtA1.setEditable(false);
 		txtA1.setText("0");
@@ -377,7 +341,7 @@ public class TabelaPoltronas extends JFrame {
 				mudar_valor('B', 2, idPassagem, txtB2);
 			}
 		});
-		
+
 		txtC1 = new JTextField();
 		txtC1.setEnabled(false);
 		txtC1.setEditable(false);
@@ -645,22 +609,22 @@ public class TabelaPoltronas extends JFrame {
 		lblE.setBounds(1, 120, 20, 20);
 		panelLegendas.add(lblE);
 		lblE.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
+
 		label = new JLabel("1");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		label.setBounds(30, 142, 20, 20);
 		panelLegendas.add(label);
-		
+
 		label_1 = new JLabel("2");
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		label_1.setBounds(70, 142, 20, 20);
 		panelLegendas.add(label_1);
-		
+
 		label_2 = new JLabel("3");
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		label_2.setBounds(129, 142, 20, 20);
 		panelLegendas.add(label_2);
-		
+
 		label_3 = new JLabel("4");
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		label_3.setBounds(172, 142, 20, 20);
