@@ -303,25 +303,7 @@ public class ViewBilheteria extends JFrame {
 		return txtData;
 	}
 
-	/**
-	 * Getters e Setters.
-	 */
-
-	public JTextField getTxtHorario() {
-		return txtHorario;
-	}
-
-	public int getIdPassagem() {
-		return idPassagem;
-	}
 	
-	public void setIdPassagem(int idPassagem) {
-		this.idPassagem = idPassagem;
-	}
-
-	public void setTxtHorario(JTextField txtHorario) {
-		this.txtHorario = txtHorario;
-	}
 
 	/**
 	 * Create the frame.
@@ -535,4 +517,90 @@ public class ViewBilheteria extends JFrame {
 		menuSair.setIcon(new ImageIcon(imgsair));
 		menu.add(menuSair);
 	}
+	
+	/**
+	 * Getters e Setters.
+	 */
+
+	public JTextField getTxtHorario() {
+		return txtHorario;
+	}
+	
+	public void setTxtHorario(JTextField txtHorario) {
+		this.txtHorario = txtHorario;
+	}
+
+	public JTextField getTxtPartida() {
+		return txtPartida;
+	}
+
+	public void setTxtPartida(JTextField txtPartida) {
+		this.txtPartida = txtPartida;
+	}
+
+	public JTextField getTxtCliente() {
+		return txtCliente;
+	}
+
+	public void setTxtCliente(JTextField txtCliente) {
+		this.txtCliente = txtCliente;
+	}
+
+	public JTextField getTxtPreco() {
+		return txtPreco;
+	}
+
+	public void setTxtPreco(JTextField txtPreco) {
+		this.txtPreco = txtPreco;
+	}
+
+	public JComboBox getComboCDestino() {
+		return comboCDestino;
+	}
+
+	public void setComboCDestino(JComboBox comboCDestino) {
+		this.comboCDestino = comboCDestino;
+	}
+
+	public JComboBox getComboHPartida() {
+		return comboHPartida;
+	}
+
+	public void setComboHPartida(JComboBox comboHPartida) {
+		this.comboHPartida = comboHPartida;
+	}
+
+	public JTextField getTxtHDestino() {
+		return txtHDestino;
+	}
+
+	public void setTxtHDestino(JTextField txtHDestino) {
+		this.txtHDestino = txtHDestino;
+	}
+
+	public JTextField getTxtTroco() {
+		return txtTroco;
+	}
+
+	public void setTxtTroco(JTextField txtTroco) {
+		this.txtTroco = txtTroco;
+	}
+
+	public JTextField getTxtResult() {
+		return txtResult;
+	}
+
+	public void setTxtResult(JTextField txtResult) {
+		this.txtResult = txtResult;
+	}
+
+	public int getIdPassagem() {
+		return idPassagem;
+	}
+	
+	public void setIdPassagem(int idPassagem) {
+		this.idPassagem = idPassagem;
+	}
+
+	
 }
