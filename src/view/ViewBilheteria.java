@@ -22,6 +22,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.*;
 
 /**
  * 
@@ -50,6 +51,7 @@ public class ViewBilheteria extends JFrame {
 	private String resultado_troco = "";
 	private String txt_mes_ano;
 	private String txt_data;
+
 	/**
 	 * Launch the application.
 	 */
@@ -148,7 +150,7 @@ public class ViewBilheteria extends JFrame {
 	 * @param Phorario
 	 */
 	public int mostrarHDestino() {
-		
+
 		try {
 			Connection connec = SqliteConnection.dbBilheteria();
 
@@ -168,7 +170,7 @@ public class ViewBilheteria extends JFrame {
 			rs.close();
 			prep.close();
 			connec.close();
-			
+
 			// return id;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -191,14 +193,13 @@ public class ViewBilheteria extends JFrame {
 	}
 
 	public void gerar_txt() {
-		
-		
+
 		NotaFiscal nf = new NotaFiscal(txtHorario.getText(), this.id, txtPartida.getText(),
-		comboCDestino.getSelectedItem().toString(), comboHPartida.getSelectedItem().toString(),
-		txtHDestino.getText(), txtCliente.getText().toUpperCase(), tp.getPoltronas().toString(),
-		this.caixa, txtPreco.getText(), this.resultado_troco, this.txt_mes_ano, this.txt_data);
+				comboCDestino.getSelectedItem().toString(), comboHPartida.getSelectedItem().toString(),
+				txtHDestino.getText(), txtCliente.getText().toUpperCase(), tp.getPoltronas().toString(), this.caixa,
+				txtPreco.getText(), this.resultado_troco, this.txt_mes_ano, this.txt_data);
 	}
-	
+
 	/**
 	 * Registra a compra. Inserindo na tabela 'compras'.
 	 * 
@@ -253,7 +254,32 @@ public class ViewBilheteria extends JFrame {
 		txtCliente.setText("");
 		tp.closeFrame();
 	}
-	
+
+	/**
+	 * Função que exibe uma caixa de confirmação e libera todos os assentos usados
+	 * nas passagens do dia.
+	 */
+	public void limpar_poltronas() {
+		int op = JOptionPane.showConfirmDialog(this, "Deseja mesmo encerrar as passagens de hoje?", "Aviso", 2,
+				JOptionPane.QUESTION_MESSAGE);
+		if (op == 2)
+			return;
+
+		try {
+			Connection connec = SqliteConnection.dbBilheteria();
+			String query = "UPDATE poltronas SET A1='0', A2='0', A3='0', A4='0', B1='0', B2='0', B3='0', B4='0', "
+				+ "C1='0', C2='0', C3='0', C4='0', D1='0', D2='0', D3='0', D4='0', E1='0',E2='0', E3='0', E4='0'";
+
+			PreparedStatement prep = connec.prepareStatement(query);
+			prep.execute();
+			prep.close();
+			connec.close();
+			JOptionPane.showMessageDialog(null, " apagou");
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(this, e);
+		}
+	}
+
 	/**
 	 * Fecha a frame.
 	 */
@@ -301,11 +327,11 @@ public class ViewBilheteria extends JFrame {
 						String min = mascara_data(min0);
 						String hora = mascara_data(hora0);
 
-						txtData.setText(dia + "-" + mes + "-" + ano + " " + hora + ":" + min + ":" + seg+ "");
+						txtData.setText(dia + "-" + mes + "-" + ano + " " + hora + ":" + min + ":" + seg + "");
 						// USADO PARA O BANCO DE DADOS
-						txtData.setName(ano + "-" + mes + "-" + dia + " " + hora + ":" + min + ":" + seg+ ""); 
-						txt_mes_ano = (mes+"-"+ano);
-						txt_data = (dia+"-"+mes+" "+hora+"h"+min);
+						txtData.setName(ano + "-" + mes + "-" + dia + " " + hora + ":" + min + ":" + seg + "");
+						txt_mes_ano = (mes + "-" + ano);
+						txt_data = (dia + "-" + mes + " " + hora + "h" + min);
 						sleep(1000);
 					}
 				} catch (InterruptedException e) {
@@ -316,8 +342,6 @@ public class ViewBilheteria extends JFrame {
 		clock.start();
 		return txtData;
 	}
-
-	
 
 	/**
 	 * Create the frame.
@@ -383,7 +407,7 @@ public class ViewBilheteria extends JFrame {
 
 		txtCliente = new JTextField();
 		txtCliente.setText(" ");
-		
+
 		txtCliente.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -533,7 +557,7 @@ public class ViewBilheteria extends JFrame {
 		menuSair.setIcon(new ImageIcon(imgsair));
 		menu.add(menuSair);
 	}
-	
+
 	/**
 	 * Getters e Setters.
 	 */

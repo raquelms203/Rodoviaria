@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import java.sql.*;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -69,35 +69,7 @@ public class ViewADM extends JFrame {
 		});
 	}
 
-	/**
-	 * Função que exibe uma caixa de confirmação e libera todos os assentos usados
-	 * nas passagens do dia.
-	 */
-	public void limpar_poltronas() {
-		int op = JOptionPane.showConfirmDialog(this, "Deseja mesmo encerrar as passagens de hoje?", "Aviso", 2,
-				JOptionPane.QUESTION_MESSAGE);
-		if (op == 2)
-			return;
-
-		try {
-			Connection connec = SqliteConnection.dbBilheteria();
-			String query = "UPDATE poltronas SET A1='0';" + "UPDATE poltronas SET A2='0';"
-					+ "UPDATE poltronas SET A3='0';" + "UPDATE poltronas SET A4='0';" + "UPDATE poltronas SET B1='0';"
-					+ "UPDATE poltronas SET B2='0';" + "UPDATE poltronas SET B3='0';" + "UPDATE poltronas SET B4='0';"
-					+ "UPDATE poltronas SET C1='0';" + "UPDATE poltronas SET C2='0';" + "UPDATE poltronas SET C3='0';"
-					+ "UPDATE poltronas SET C4='0';" + "UPDATE poltronas SET D1='0';" + "UPDATE poltronas SET D2='0';"
-					+ "UPDATE poltronas SET D3='0';" + "UPDATE poltronas SET D4='0';" + "UPDATE poltronas SET E1='0';"
-					+ "UPDATE poltronas SET E2='0';" + "UPDATE poltronas SET E3='0';" + "UPDATE poltronas SET E4='0';";
-
-			PreparedStatement prep = connec.prepareStatement(query);
-			prep.execute();
-			prep.close();
-			connec.close();
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(this, e);
-		}
-	}
-
+	
 	/**
 	 * Fecha a Frame.
 	 */
@@ -131,7 +103,7 @@ public class ViewADM extends JFrame {
 		JMenuItem menuEnc = new JMenuItem("Encerrar Passagens");
 		menuEnc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				limpar_poltronas();
+				vb.limpar_poltronas();
 			}
 		});
 		menu.add(menuEnc);
