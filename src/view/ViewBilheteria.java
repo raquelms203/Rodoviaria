@@ -4,6 +4,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+import controller.NotaFiscal;
 import controller.TabelaPoltronas;
 import model.SqliteConnection;
 import javax.swing.*;
@@ -44,8 +45,11 @@ public class ViewBilheteria extends JFrame {
 	private JTextField txtResult;
 	private double preco = -1;
 	protected JMenuBar menuBar;
-	
-
+	private int id = -1;
+	private String caixa = "";
+	private String resultado_troco = "";
+	private String txt_mes_ano;
+	private String txt_data;
 	/**
 	 * Launch the application.
 	 */
@@ -144,7 +148,7 @@ public class ViewBilheteria extends JFrame {
 	 * @param Phorario
 	 */
 	public int mostrarHDestino() {
-		int id = -1;
+		
 		try {
 			Connection connec = SqliteConnection.dbBilheteria();
 
@@ -164,7 +168,7 @@ public class ViewBilheteria extends JFrame {
 			rs.close();
 			prep.close();
 			connec.close();
-			return id;
+			
 			// return id;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -180,12 +184,21 @@ public class ViewBilheteria extends JFrame {
 
 			double troco = Double.parseDouble(txtTroco.getText());
 			double result = troco - this.preco;
-			String mascara_resultado = String.format("R$ %.2f", result);
-			txtResult.setText(mascara_resultado);
+			this.resultado_troco = String.format("R$ %.2f", result);
+			txtResult.setText(resultado_troco);
 			txtResult.setVisible(true);
 		}
 	}
 
+	public void gerar_txt() {
+		
+		
+		NotaFiscal nf = new NotaFiscal(txtHorario.getText(), this.id, txtPartida.getText(),
+		comboCDestino.getSelectedItem().toString(), comboHPartida.getSelectedItem().toString(),
+		txtHDestino.getText(), txtCliente.getText().toUpperCase(), tp.getPoltronas().toString(),
+		this.caixa, txtPreco.getText(), this.resultado_troco, this.txt_mes_ano, this.txt_data);
+	}
+	
 	/**
 	 * Registra a compra. Inserindo na tabela 'compras'.
 	 * 
@@ -210,6 +223,7 @@ public class ViewBilheteria extends JFrame {
 			prep.execute();
 			prep.close();
 			connec.close();
+			gerar_txt();
 			JOptionPane.showMessageDialog(tp, "Compra realizada com sucesso!");
 
 			limparCampos();
@@ -224,8 +238,7 @@ public class ViewBilheteria extends JFrame {
 	 * 
 	 */
 	public void mostrarPanelPoltronas() {
-		int id = mostrarHDestino();
-		tp = new TabelaPoltronas(id);
+		tp = new TabelaPoltronas(this.id);
 		tp.setVisible(true);
 	}
 
@@ -288,10 +301,11 @@ public class ViewBilheteria extends JFrame {
 						String min = mascara_data(min0);
 						String hora = mascara_data(hora0);
 
-						txtData.setText(dia + "/" + mes + "/" + ano + " " + hora + ":" + min + ":" + seg+ "");
+						txtData.setText(dia + "-" + mes + "-" + ano + " " + hora + ":" + min + ":" + seg+ "");
 						// USADO PARA O BANCO DE DADOS
-						txtData.setName(ano + "/" + mes + "/" + dia + " " + hora + ":" + min + ":" + seg+ ""); 
-						
+						txtData.setName(ano + "-" + mes + "-" + dia + " " + hora + ":" + min + ":" + seg+ ""); 
+						txt_mes_ano = (mes+"-"+ano);
+						txt_data = (dia+"-"+mes+" "+hora+"h"+min);
 						sleep(1000);
 					}
 				} catch (InterruptedException e) {
@@ -309,6 +323,7 @@ public class ViewBilheteria extends JFrame {
 	 * Create the frame.
 	 */
 	public ViewBilheteria(String caixa) {
+		this.caixa = caixa;
 		setType(Type.POPUP);
 		addWindowFocusListener(new WindowFocusListener() { /// ASSIM QUE O FRAME GANHA FOCO
 			public void windowGainedFocus(WindowEvent arg0) {
@@ -367,6 +382,7 @@ public class ViewBilheteria extends JFrame {
 		contentPane.add(txtHDestino);
 
 		txtCliente = new JTextField();
+		txtCliente.setText(" ");
 		
 		txtCliente.addKeyListener(new KeyAdapter() {
 			@Override
@@ -525,82 +541,8 @@ public class ViewBilheteria extends JFrame {
 	public JTextField getTxtHorario() {
 		return txtHorario;
 	}
-	
+
 	public void setTxtHorario(JTextField txtHorario) {
 		this.txtHorario = txtHorario;
 	}
-
-	public JTextField getTxtPartida() {
-		return txtPartida;
-	}
-
-	public void setTxtPartida(JTextField txtPartida) {
-		this.txtPartida = txtPartida;
-	}
-
-	public JTextField getTxtCliente() {
-		return txtCliente;
-	}
-
-	public void setTxtCliente(JTextField txtCliente) {
-		this.txtCliente = txtCliente;
-	}
-
-	public JTextField getTxtPreco() {
-		return txtPreco;
-	}
-
-	public void setTxtPreco(JTextField txtPreco) {
-		this.txtPreco = txtPreco;
-	}
-
-	public JComboBox getComboCDestino() {
-		return comboCDestino;
-	}
-
-	public void setComboCDestino(JComboBox comboCDestino) {
-		this.comboCDestino = comboCDestino;
-	}
-
-	public JComboBox getComboHPartida() {
-		return comboHPartida;
-	}
-
-	public void setComboHPartida(JComboBox comboHPartida) {
-		this.comboHPartida = comboHPartida;
-	}
-
-	public JTextField getTxtHDestino() {
-		return txtHDestino;
-	}
-
-	public void setTxtHDestino(JTextField txtHDestino) {
-		this.txtHDestino = txtHDestino;
-	}
-
-	public JTextField getTxtTroco() {
-		return txtTroco;
-	}
-
-	public void setTxtTroco(JTextField txtTroco) {
-		this.txtTroco = txtTroco;
-	}
-
-	public JTextField getTxtResult() {
-		return txtResult;
-	}
-
-	public void setTxtResult(JTextField txtResult) {
-		this.txtResult = txtResult;
-	}
-
-	public int getIdPassagem() {
-		return idPassagem;
-	}
-	
-	public void setIdPassagem(int idPassagem) {
-		this.idPassagem = idPassagem;
-	}
-
-	
 }

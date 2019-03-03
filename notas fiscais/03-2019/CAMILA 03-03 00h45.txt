@@ -1,0 +1,22 @@
+RODOVIARIA 
+JOAO MONLEVADE - MG
+============================
+DATA: 03-03-2019 00:45:04	ID: 8
+
+============================
+PARTIDA: JOAO MONLEVADE
+HORARIO: 8:00
+DESTINO: ITABIRA
+HORARIO: 9:00
+
+============================
+CAIXA: 
+CLIENTE: CAMILA
+POLTRONA: [A1]
+
+TOTAL: R$ 12,50
+TROCO: null 
+
+============================
+
+OBRIGADO, VOLTE SEMPRE!

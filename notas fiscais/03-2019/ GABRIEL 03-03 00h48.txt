@@ -1,0 +1,22 @@
+RODOVIARIA 
+JOAO MONLEVADE - MG
+============================
+DATA: 03-03-2019 00:48:15	ID: 9
+
+============================
+PARTIDA: JOAO MONLEVADE
+HORARIO: 9:00
+DESTINO: ALVINOPOLIS
+HORARIO: 10:10
+
+============================
+CAIXA: 
+CLIENTE:  GABRIEL
+POLTRONA: [E1]
+
+TOTAL: R$ 15,00
+TROCO: null 
+
+============================
+
+OBRIGADO, VOLTE SEMPRE!
