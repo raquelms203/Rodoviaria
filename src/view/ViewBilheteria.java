@@ -274,7 +274,6 @@ public class ViewBilheteria extends JFrame {
 			prep.execute();
 			prep.close();
 			connec.close();
-			JOptionPane.showMessageDialog(null, " apagou");
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(this, e);
 		}
