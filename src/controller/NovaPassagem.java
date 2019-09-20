@@ -124,7 +124,8 @@ public class NovaPassagem extends JFrame {
 				prep0.close();
 			}
 
-			String query = "INSERT INTO passagens (destino_cidade, partida_horario, destino_horario, preco) VALUES (?, ?, ?, ?)";
+			String query = "INSERT INTO passagens (destino_cidade, partida_horario, destino_horario, preco) VALUES (?, ?, ?, ?);"
+					+ "		INSERT INTO poltronas (A1, A2, A3, A4, B1, B2, )";
 
 			PreparedStatement prep = connec.prepareStatement(query);
 			prep.setString(1, txtDestino.getText().toUpperCase());

@@ -41,7 +41,7 @@ public class NotaFiscal extends JFrame {
 		setContentPane(contentPane);
 		
 		// CRIA A PASTA 
-		File diretorio = new File("C:\\Users\\raque\\Documents\\Rodoviaria\\notas fiscais\\"+txt_mes_ano);
+		File diretorio = new File("C:\\Users\\raque\\Documents\\- Períodos Anteriores\\6 Período\\Eclipse\\Rodoviaria\\notas fiscais\\"+txt_mes_ano);
 		boolean status = diretorio.mkdir();
 		System.out.println(status);
 		

@@ -276,6 +276,7 @@ public class TabelaPoltronas extends JFrame {
 		iniciarPoltrona('D', 1, idPassagem, txtD1);
 
 		txtA1 = new JTextField();
+	//	Poltrona p = new Poltrona("A1", 1, false);
 		txtA1.setToolTipText("");
 		txtA1.setEnabled(false);
 		txtA1.setEditable(false);

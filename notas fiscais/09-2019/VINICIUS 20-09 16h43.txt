@@ -1,0 +1,24 @@
+RODOVIARIA 
+JOAO MONLEVADE - MG
+============================
+DATA: 20-09-2019 16:43:49
+ID: 8
+
+============================
+PARTIDA: JOAO MONLEVADE
+HORARIO: 8:00
+DESTINO: ITABIRA
+HORARIO: 9:00
+
+============================
+CAIXA: raquel
+CLIENTE: VINICIUS
+POLTRONA: [B1]
+
+TOTAL: R$ 12,50
+TROCO:  
+
+============================
+
+OBRIGADO, VOLTE SEMPRE!
+============================

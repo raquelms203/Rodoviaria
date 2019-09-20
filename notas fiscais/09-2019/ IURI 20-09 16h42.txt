@@ -1,0 +1,24 @@
+RODOVIARIA 
+JOAO MONLEVADE - MG
+============================
+DATA: 20-09-2019 16:42:26
+ID: 5
+
+============================
+PARTIDA: JOAO MONLEVADE
+HORARIO: 8:00
+DESTINO: BELO HORIZONTE
+HORARIO: 11:00
+
+============================
+CAIXA: raquel
+CLIENTE:  IURI
+POLTRONA: [C1]
+
+TOTAL: R$ 38,00
+TROCO:  
+
+============================
+
+OBRIGADO, VOLTE SEMPRE!
+============================
