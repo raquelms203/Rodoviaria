@@ -115,9 +115,9 @@ public class TabelaCompras extends JFrame {
 			}
 			
 			Connection connec = SqliteConnection.dbBilheteria();
-			String query = ("SELECT * FROM compras WHERE " + comboPesquisar.getSelectedItem().toString() + "='" + input
-					+ "'");
+			String query = ("SELECT * FROM compras WHERE " + comboPesquisar.getSelectedItem().toString() + "=?");
 			PreparedStatement prep = connec.prepareStatement(query);
+			prep.setString(1, input);
 			ResultSet rs = prep.executeQuery();
 
 			tabelaCompras.setModel(DbUtils.resultSetToTableModel(rs));

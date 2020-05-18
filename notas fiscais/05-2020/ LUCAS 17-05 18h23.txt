@@ -1,22 +1,24 @@
 RODOVIARIA 
 JOAO MONLEVADE - MG
 ============================
-DATA: 03-03-2019 00:45:04	ID: 8
+DATA: 17-05-2020 18:23:58
+ID: 5
 
 ============================
 PARTIDA: JOAO MONLEVADE
 HORARIO: 8:00
-DESTINO: ITABIRA
-HORARIO: 9:00
+DESTINO: BELO HORIZONTE
+HORARIO: 11:00
 
 ============================
-CAIXA: 
-CLIENTE: CAMILA
-POLTRONA: [A1]
+CAIXA: raquel
+CLIENTE:  LUCAS
+POLTRONA: [B1]
 
-TOTAL: R$ 12,50
-TROCO: null 
+TOTAL: R$ 38,00
+TROCO: R$ 2,00 
 
 ============================
 
 OBRIGADO, VOLTE SEMPRE!
+============================

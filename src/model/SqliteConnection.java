@@ -15,7 +15,7 @@ public class SqliteConnection {
 		Connection conn = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\raque\\eclipse-workspace\\InterfaceGrafica\\database\\bilheteria.sqlite");
+			conn = DriverManager.getConnection("jdbc:sqlite:D:\\Raquel\\Documents\\Programacao\\rodoviaria\\database\\bilheteria.sqlite");
 			return conn;
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Sistema caiu!\n"+e);

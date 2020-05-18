@@ -1,7 +1,8 @@
 RODOVIARIA 
 JOAO MONLEVADE - MG
 ============================
-DATA: 03-03-2019 00:48:15	ID: 9
+DATA: 17-05-2020 19:05:23
+ID: 9
 
 ============================
 PARTIDA: JOAO MONLEVADE
@@ -10,13 +11,14 @@ DESTINO: ALVINOPOLIS
 HORARIO: 10:10
 
 ============================
-CAIXA: 
-CLIENTE:  GABRIEL
-POLTRONA: [E1]
+CAIXA: RAQUEL
+CLIENTE:  CAIO
+POLTRONA: [A4]
 
 TOTAL: R$ 15,00
-TROCO: null 
+TROCO: R$ 35,00 
 
 ============================
 
 OBRIGADO, VOLTE SEMPRE!
+============================

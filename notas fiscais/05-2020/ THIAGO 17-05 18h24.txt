@@ -1,7 +1,7 @@
 RODOVIARIA 
 JOAO MONLEVADE - MG
 ============================
-DATA: 03-03-2019 12:49:44
+DATA: 17-05-2020 18:24:55
 ID: 5
 
 ============================
@@ -11,12 +11,12 @@ DESTINO: BELO HORIZONTE
 HORARIO: 11:00
 
 ============================
-CAIXA: raquel
-CLIENTE:  RENATO
-POLTRONA: [A3]
+CAIXA: julia
+CLIENTE:  THIAGO
+POLTRONA: [D1]
 
 TOTAL: R$ 38,00
-TROCO: R$ 2,00 
+TROCO: R$ 12,00 
 
 ============================
 
